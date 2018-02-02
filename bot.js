@@ -96,7 +96,7 @@ FkBoiBot.prototype._getChannelById = function(channelId) {
 };
 
 FkBoiBot.prototype._generateResponse = function(message) {
-  let msgRec = message.text.replace(/\<\@.{0,}\>\s/g, '').toLowerCase();
+  const msgRec = message.text.replace(/\<\@.{0,}\>\s/g, '').toLowerCase();
 
   if (msgRec.match(/shut\sup/g) ||
       msgRec.match(/fuck\soff/g)
@@ -124,6 +124,18 @@ FkBoiBot.prototype._onMessage = function(message) {
     this._replyWithRandomResponse(message, true);
     return;
   }
+
+  if (this._isChatMessage(message) &&
+    this._isChannelConversation(message) &&
+    !this._isFromFkBoiBot(message)) {
+      let msgRec = message.text.replace(/\<\@.{0,}\>\s/g, '').toLowerCase();
+      var channel = this._getChannelById(message.channel);
+
+      if (msgRec.match(/(cute)|(cutie)/g)) {
+        this.postMessageToChannel(channel.name, 'You\'re kinda hotcuute!', { as_user: true });
+        return;
+      }
+    }
 
   if (this._isChatMessage(message) &&
     this._isChannelConversation(message) &&
