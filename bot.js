@@ -96,29 +96,41 @@ FkBoiBot.prototype._getChannelById = function(channelId) {
 };
 
 FkBoiBot.prototype.generateResponse = function(message) {
-  let msgRec = message.text.replace(/\<\@.{0,}\>\s/g, '');
+  let msgRec = message.text.replace(/\<\@.{0,}\>\s/g, '').toLowerCase();
 
-  if (msgRec.toLowerCase().match(/shut\sup/g) ||
-      msgRec.toLowerCase().match(/fuck\soff/g)
+  if (msgRec.match(/shut\sup/g) ||
+      msgRec.match(/fuck\soff/g)
   ) {
     return 'ysr'
   }
 }
 
-FkBoiBot.prototype._replyWithRandomResponse = function(originalMessage) {
+FkBoiBot.prototype._replyWithRandomResponse = function(originalMessage, funkyTime) {
   var self = this;
-
   var channel = self._getChannelById(originalMessage.channel);
+
+  if(funkyTime) {
+    self.postMessageToChannel(channel.name, 'HOUGHHHHHHHHHH SQWEENY!!!', { as_user: true });
+    return;
+  }
+
   self.postMessageToChannel(channel.name, this.generateResponse(originalMessage), { as_user: true });
 };
 
 FkBoiBot.prototype._onMessage = function(message) {
+  const isFunky = (15 === Math.floor(Math.random(1) * 15) + 1);
+
+  if (message.type === 'user_typing' && isFunky) {
+    this._replyWithRandomResponse(message, true);
+    return;
+  }
+
   if (this._isChatMessage(message) &&
     this._isChannelConversation(message) &&
     !this._isFromFkBoiBot(message) &&
     this._isMentioningFkBoi(message)
   ) {
-    this._replyWithRandomResponse(message);
+    this._replyWithRandomResponse(message, false);
   }
 };
 

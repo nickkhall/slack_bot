@@ -2,7 +2,7 @@
 
 var FkBoiBot = require('./bot.js');
 
-var token = '{ INSERT_TOKEN_HERE }';
+var token = '{ INSERT_API_TOKEN }';
 var name = 'fk_boi';
 
 var fkBoiBot = new FkBoiBot({
