@@ -95,7 +95,7 @@ FkBoiBot.prototype._getChannelById = function(channelId) {
   })[0];
 };
 
-FkBoiBot.prototype.generateResponse = function(message) {
+FkBoiBot.prototype._generateResponse = function(message) {
   let msgRec = message.text.replace(/\<\@.{0,}\>\s/g, '').toLowerCase();
 
   if (msgRec.match(/shut\sup/g) ||
@@ -114,7 +114,7 @@ FkBoiBot.prototype._replyWithRandomResponse = function(originalMessage, funkyTim
     return;
   }
 
-  self.postMessageToChannel(channel.name, this.generateResponse(originalMessage), { as_user: true });
+  self.postMessageToChannel(channel.name, this._generateResponse(originalMessage), { as_user: true });
 };
 
 FkBoiBot.prototype._onMessage = function(message) {
