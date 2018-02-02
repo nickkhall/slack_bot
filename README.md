@@ -1,2 +1,6 @@
 # Node Slack Bot
-## I'll finish this README later
+
+## NOTE: This is NSFW, and very immature, and very weird. Please continue at your own risk.
+
+### You have been warned...
+
