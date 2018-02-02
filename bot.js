@@ -129,9 +129,10 @@ FkBoiBot.prototype._onMessage = function(message) {
     this._isChannelConversation(message) &&
     !this._isFromFkBoiBot(message)) {
       let msgRec = message.text.replace(/\<\@.{0,}\>\s/g, '').toLowerCase();
-      var channel = this._getChannelById(message.channel);
-
+      
       if (msgRec.match(/(cute)|(cutie)/g)) {
+        var channel = this._getChannelById(message.channel);
+
         this.postMessageToChannel(channel.name, 'You\'re kinda hotcuute!', { as_user: true });
         return;
       }
