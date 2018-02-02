@@ -1,0 +1,16 @@
+{
+  "name": "slack_bot",
+  "version": "0.0.1",
+  "description": "node slack bot",
+  "main": "client.js",
+  "scripts": {
+    "start": "node ./client.js"
+  },
+  "author": "nick hall",
+  "license": "ISC",
+  "dependencies": {
+    "slack-api-client": "^0.1.2",
+    "slackbots": "^0.3.0",
+    "sqlite3": "^3.1.13"
+  }
+}
