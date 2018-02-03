@@ -2,7 +2,7 @@
 
 var FkBoiBot = require('./bot.js');
 
-var token = '{ INSERT_API_TOKEN }';
+var token = process.env.SLACK_API_KEY;
 var name = 'fk_boi';
 
 var fkBoiBot = new FkBoiBot({

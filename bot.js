@@ -5,6 +5,7 @@ var path = require('path');
 var fs = require('fs');
 var sql = require('sqlite3').verbose();
 var Bot = require('slackbots');
+require('dotenv').config();
 
 var FkBoiBot = function Constructor(settings) {
   this.settings = settings;
@@ -118,7 +119,7 @@ FkBoiBot.prototype._replyWithRandomResponse = function(originalMessage, funkyTim
 };
 
 FkBoiBot.prototype._onMessage = function(message) {
-  const isFunky = (15 === Math.floor(Math.random(1) * 15) + 1);
+  const isFunky = (15 === Math.floor(Math.random(1) * 100) + 1);
 
   if (message.type === 'user_typing' && isFunky) {
     this._replyWithRandomResponse(message, true);
@@ -129,7 +130,7 @@ FkBoiBot.prototype._onMessage = function(message) {
     this._isChannelConversation(message) &&
     !this._isFromFkBoiBot(message)) {
       let msgRec = message.text.replace(/\<\@.{0,}\>\s/g, '').toLowerCase();
-      
+
       if (msgRec.match(/(cute)|(cutie)/g)) {
         var channel = this._getChannelById(message.channel);
 
