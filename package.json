@@ -4,7 +4,8 @@
   "description": "node slack bot",
   "main": "client.js",
   "scripts": {
-    "start": "nodemon ./client.js"
+    "start": "nodemon --exec 'npm run build && ./bin/client.js' --watch ./src",
+    "build": "babel src --out-dir=bin"
   },
   "author": "nick hall",
   "license": "ISC",
@@ -15,6 +16,11 @@
     "sqlite3": "^3.1.13"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "nodemon": "^1.14.12"
   }
 }
