@@ -17,7 +17,6 @@ var FkBoiBot = function Constructor(settings) {
 
 util.inherits(FkBoiBot, Bot);
 
-
 FkBoiBot.prototype.run = function() {
   FkBoiBot.super_.call(this, this.settings);
 
