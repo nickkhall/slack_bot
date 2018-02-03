@@ -1,14 +1,21 @@
 #!/usr/local/bin/node
 
-import EventEmitter from 'events';
 import util from 'util';
 import path from 'path';
 import fs from 'fs';
-import Bot from 'slackbots';
+import Slack from 'slack';
+
+import ajaxGet from './ajax.js';
 
 const isUser = { as_user: true };
+const token = process.env.SLACK_API_KEY;
 
-export default class FkBoiBot extends EventEmitter {
+const Bot = new Slack({token});
+
+console.log('Ajax: ', ajexGet('https://slack.com/api/bots.info'));
+
+
+export default class FkBoiBot extends Bot {
   constructor(settings) {
     super(settings);
     this.settings = settings;
