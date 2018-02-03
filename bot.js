@@ -3,14 +3,13 @@
 var util = require('util');
 var path = require('path');
 var fs = require('fs');
-var sql = require('sqlite3').verbose();
 var Bot = require('slackbots');
+
 require('dotenv').config();
 
 var FkBoiBot = function Constructor(settings) {
   this.settings = settings;
   this.settings.name = this.settings.name || 'fk_boi';
-  // this.dbPath = settings.dbPath || path.resolve(process.cwd(), 'data', fkboi.db);
 
   this.user = null;
   this.db = null;
@@ -28,8 +27,6 @@ FkBoiBot.prototype.run = function() {
 
 FkBoiBot.prototype._onStart = function() {
   this._loadBotUser();
-  this._connectDb();
-  this._firstRunCheck();
 };
 
 FkBoiBot.prototype._loadBotUser = function() {
@@ -38,34 +35,6 @@ FkBoiBot.prototype._loadBotUser = function() {
   this.user = this.users.filter(function(user) {
     return user.name === self.name;
   })[0];
-};
-
-FkBoiBot.prototype._connectDb = function() {
-  // if (!fs.existsSync(this.dbPath)) {
-  //   console.error('Database path ' + '"' + this.dbPath + '" does not exist or it\'s not readable.');
-  //   process.exit(1);
-  // }
-  //
-  // this.db = new sql.Database(this.dbPath);
-};
-
-FkBoiBot.prototype._firstRunCheck = function() {
-  var self = this;
-
-  // self.db.get('SELECT val FROM info WHERE name = "lastrun" LIMIT 1', function(err, record) {
-  //   if (err) {
-  //     return console.error('DATABASE ERROR:', err);
-  //   }
-  //
-  //   var currentTime = (new Date()).toJSON();
-  //
-  //   if (!record) {
-  //     self._welcomeMessage();
-  //     return self.db.run('INSERT INTO info(name, val) VALUES("lastrun", ?)', currentTime);
-  //   }
-  //
-  //   self.db.run('UPDATE info SET val = ? WHERE name = "lastrun"', currentTime);
-  // });
 };
 
 FkBoiBot.prototype._welcomeMessage = function() {

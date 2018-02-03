@@ -11,8 +11,7 @@
   "dependencies": {
     "dotenv": "^5.0.0",
     "slack-api-client": "^0.1.2",
-    "slackbots": "^0.3.0",
-    "sqlite3": "^3.1.13"
+    "slackbots": "^0.3.0"
   },
   "devDependencies": {
     "nodemon": "^1.14.12"
