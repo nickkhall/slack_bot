@@ -4,7 +4,7 @@
   "description": "node slack bot",
   "main": "client.js",
   "scripts": {
-    "start": "nodemon --exec 'npm run build && ./bin/client.js' --watch ./src",
+    "start": "nodemon --watch ./src --exec 'npm run build && ./bin/client.js'",
     "build": "babel src --out-dir=bin"
   },
   "author": "nick hall",
