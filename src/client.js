@@ -1,18 +1,15 @@
 #!/usr/local/bin/node
-'use strict';
 
-var FkBoiBot = require('./bot.js');
+require('dotenv').config();
 
-console.log({ FkBoiBot });
+import FkBoiBot from './bot.js';
 
-var token = process.env.SLACK_API_KEY;
-var name = 'fk_boi';
-// 
-// var fkBoiBot = new FkBoiBot({
-//   token: token,
-//   name: name,
-//   dbPath: './data.txt'
-// });
+let token = process.env.SLACK_API_KEY;
+let name = 'fk_boi';
 
-// fkBoiBot.run();
+let fkBoiBot = new FkBoiBot({
+  token: token,
+  name: name
+});
+
 console.log('Slack client is running');

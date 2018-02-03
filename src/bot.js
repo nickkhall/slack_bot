@@ -1,31 +1,20 @@
 #!/usr/local/bin/node
-'use strict';
 
-var util = require('util');
-var path = require('path');
-var fs = require('fs');
-var sql = require('sqlite3').verbose();
-var Bot = require('slackbots');
+import EventEmitter from 'events';
+import util from 'util';
+import path from 'path';
+import fs from 'fs';
+import Bot from 'slackbots';
 
-console.log({ Bot });
+const isUser = { as_user: true };
 
-require('dotenv').config();
-
-class FkBoiBot extends Bot {
+export default class FkBoiBot extends EventEmitter {
   constructor(settings) {
     super(settings);
-
     this.settings = settings;
-    this.settings.name = this.settings.name || 'fk_boi';
-    this.user = null;
-    this.isUser = { as_user: true };
+
     this.on('start', this.onStart);
     this.on('message', this.onMessage);
-  }
-
-
-  run() {
-
   }
 
   onStart() {
@@ -84,11 +73,11 @@ class FkBoiBot extends Bot {
       this.postMessageToChannel(
         channel.name,
         'HOUGHHHHHHHHHH SQWEENY!!!',
-        this.isUser
+        isUser
       );
     }
 
-    this.postMessageToChannel(channel.name, this.generateResponse(origMsg), this.isUser)
+    this.postMessageToChannel(channel.name, this.generateResponse(origMsg), isUser)
   }
 
   onMessage(msg) {
@@ -121,5 +110,3 @@ class FkBoiBot extends Bot {
     }
   }
 }
-
-export default FkBoiBot;
